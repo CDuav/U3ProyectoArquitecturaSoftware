@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Registro</h4>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="usuarioForm" (ngSubmit)="signUp()" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
+                        <div class="text-danger"
+                            *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
+                            <span>Este campo es <strong>obligatorio</strong></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="calle" class="form-label">Calle:</label>
+                        <input formControlName="calle" type="text" class="form-control" id="calle" placeholder="Ingrese su calle" required>
+                        <div class="text-danger"
+                            *ngIf="usuarioForm.get('calle')?.hasError('required') && usuarioForm.get('calle')?.touched">
+                            <span>Este campo es <strong>obligatorio</strong></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="no" class="form-label">Número:</label>
+                            <input formControlName="no" type="text" class="form-control" id="no" placeholder="118-A" required>
+                            <div class="text-danger"
+                                *ngIf="usuarioForm.get('no')?.hasError('required') && usuarioForm.get('no')?.touched">
+                                <span>Este campo es <strong>obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="col" class="form-label">Colonia:</label>
+                            <select formControlName="col" id="col" class="form-control" required>
+                                <option value="" disabled selected>Selecciona una colonia</option>
+                                <option *ngFor="let colonia of listColonia">{{colonia.nombre}}</option>
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="usuarioForm.get('col')?.hasError('required') && usuarioForm.get('col')?.touched">
+                                <span>Este campo es <strong>obligatorio</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="cp" class="form-label">Código Postal:</label>
+                            <input formControlName="cp" type="number" class="form-control" id="cp" placeholder="37800" required>
+                            <div class="text-danger"
+                                *ngIf="usuarioForm.get('cp')?.hasError('required') && usuarioForm.get('cp')?.touched">
+                                <span>Este campo es <strong>obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="correo" class="form-label">Correo Electrónico:</label>
+                            <input formControlName="correo" type="email" class="form-control" id="correo" placeholder="ejemplo@gmail.com" required>
+                            <div class="text-danger"
+                                *ngIf="usuarioForm.get('correo')?.hasError('required') && usuarioForm.get('correo')?.touched">
+                                <span>Este campo es <strong>obligatorio</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="passwd" class="form-label">Contraseña:</label>
+                        <input formControlName="passwd" type="password" class="form-control" id="passwd" placeholder="Ingrese su contraseña" required>
+                        <div class="text-danger"
+                            *ngIf="usuarioForm.get('passwd')?.hasError('required') && usuarioForm.get('passwd')?.touched">
+                            <span>Este campo es <strong>obligatorio</strong></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Registrarse
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

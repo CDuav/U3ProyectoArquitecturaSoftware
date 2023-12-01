@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card custom-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+          <div class="topnav">
+            <input type="text" name="buscador" placeholder="Buscar por nombre" (keyup)="filtrarLibros($event)" class="form-control" style="width: 920px; margin-bottom: 50px;">
+          </div>
+          <button *ngIf="authService.loggedIn() && esAdmin" routerLink="/añadir-libro" class="btn btn-success ml-auto">NUEVO</button>
+        </div>
+        <div class="text-center" style="margin-bottom: 50px;">
+          <h5 class="titulo mt-3 display-4 lettering" style="color: #ffffff; font-family:'Times New Roman';  font-size: 3.5rem;">Descubre los Mejores Libros</h5>
+          
+          <!-- <p style="color: #ffffff; font-size: 1.2rem;" class="marquesina">Sumérgete en un mundo de historias fascinantes y aventuras inolvidables</p> -->
+          <div
+    class="marquesina"
+    style="margin: 30px; padding: auto; margin-left: 50px">
+  
+<marquee behavior="scroll" direction="left">
+  <span class="titulo">Sumérgete en un mundo de historias fascinantes y aventuras inolvidables</span>
+</marquee></div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div *ngFor="let libro of librosFiltrados.length > 0 ? librosFiltrados : listLibros" class="col">
+            <div class="cardpeque" > 
+              <div class="d-flex">
+                <img *ngIf="libro.foto" [src]="getSanitizedImageUrl(libro.foto, 'jpeg')" class="card-img-top" alt="Foto" style="height: 150px; width: 100px; object-fit: cover; margin-top: 10px; margin-left: 5px;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ libro.titulo }}</h5>
+                  <p class="card-text">{{ libro.sinop }}</p>
+                  <p class="card-text"><strong>Editorial: </strong>{{ libro.editorial }}</p>
+                  <p><strong>Fecha publicación: </strong>{{libro.fechpubl}} </p>
+                  <p><strong>Genero: </strong>{{libro.gen}} </p>
+                  <p><strong>Páginas: </strong>{{libro.numpag}} </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <button *ngIf="authService.loggedIn() && esAdmin" (click)="notificarCambioDisp(libro._id)" class="btn btn-outline-success btn-sm" style="margin-right: 4px;">Disponible</button>
+                    <button *ngIf="authService.loggedIn() && esAdmin" (click)="notificarCambioPrest(libro._id)" class="btn btn-outline-primary btn-sm">Prestado</button>
+                    <div>
+                      <i *ngIf="authService.loggedIn()" class="fa fa-heart fa-2x btn-outline-danger" (click)="agregarFavorito(libro._id, libro.titulo)" style="margin-left: 3px; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5 style="text-align: start; margin-top: 10px;" *ngIf="listLibros.length == 0">No hay libros para mostrar</h5>
+      </div>
+    </div>
+  </div>
+</div>

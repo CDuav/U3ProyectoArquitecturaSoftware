@@ -1,0 +1,37 @@
+body {
+    background-image: url('https://estaticos.elmundo.es/assets/multimedia/imagenes/2016/03/28/14591761866775.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(255, 255, 255, 0.5); /* Ajusta el último valor para la opacidad */
+  }
+  
+
+.titulo{
+    font-size: 1.8rem;
+}
+
+@keyframes cardpeque {
+	0% {
+		transform: scale(0);
+		transform-origin: 50% 0%;
+	}
+
+	100% {
+		transform: scale(1);
+		transform-origin: 50% 0%;
+	}
+}
+
+@keyframes marquee {
+  from {
+    left: 100%;
+  }
+  
+  to {
+    right: 100%;
+  }
+  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
